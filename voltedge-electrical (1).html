@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VoltEdge Electrical – Licensed & Trusted Electrical Services Canada</title>
+<meta name="description" content="Canada's premium licensed electrical services. 24/7 emergency repairs, panel upgrades, EV charger installation, and more across Toronto, Vancouver, Calgary."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+/* ── Reset & Base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:#0B1220;color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── CSS Variables ── */
+:root{
+  --navy:#0B1220;
+  --navy2:#0f1a2e;
+  --navy3:#13243d;
+  --blue:#2563EB;
+  --blue-light:#3b82f6;
+  --blue-glow:rgba(37,99,235,0.3);
+  --white:#FFFFFF;
+  --gray:#94a3b8;
+  --gray-light:#e2e8f0;
+  --border:rgba(255,255,255,0.08);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#0B1220}
+::-webkit-scrollbar-thumb{background:#2563EB;border-radius:2px}
+
+/* ── Typography Helpers ── */
+.font-display{font-family:'Syne',sans-serif}
+.gradient-text{background:linear-gradient(135deg,#fff 0%,#93c5fd 50%,#2563EB 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Visual Helpers ── */
+.gradient-blue{background:linear-gradient(135deg,#1d4ed8 0%,#2563EB 50%,#3b82f6 100%)}
+.glass{background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08)}
+.glow-blue{box-shadow:0 0 40px rgba(37,99,235,0.3),0 0 80px rgba(37,99,235,0.1)}
+
+/* ── Section Tag ── */
+.section-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.12);border:1px solid rgba(37,99,235,0.3);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#93c5fd;margin-bottom:20px}
+.section-tag::before{content:'';width:6px;height:6px;background:#2563EB;border-radius:50%;flex-shrink:0}
+
+/* ── Buttons ── */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1d4ed8,#2563EB);color:#fff;padding:14px 28px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;border:none;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(37,99,235,0.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,99,235,0.5)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;padding:13px 28px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid rgba(255,255,255,0.2);cursor:pointer;transition:all .3s}
+.btn-outline:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.4);transform:translateY(-2px)}
+
+/* ── Form Elements ── */
+input,select,textarea{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;padding:14px 18px;font-family:'DM Sans',sans-serif;font-size:15px;width:100%;transition:border-color .3s;outline:none}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.35)}
+input:focus,select:focus,textarea:focus{border-color:#2563EB;background:rgba(37,99,235,0.08)}
+select option{background:#0f1a2e;color:#fff}
+
+/* ── Animations ── */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
+@keyframes counter{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes slide-up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+@keyframes spin-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.animate-float{animation:float 4s ease-in-out infinite}
+.animate-fade{animation:fade-in .8s ease forwards}
+.animate-slide{animation:slide-up .7s ease forwards}
+
+/* ── Progress Bar ── */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#2563EB,#60a5fa);z-index:9999;transition:width .1s}
+
+/* ── Service Card ── */
+.service-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;transition:all .4s;position:relative;overflow:hidden;cursor:pointer}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(37,99,235,0.08),transparent);opacity:0;transition:opacity .4s}
+.service-card:hover{transform:translateY(-6px);border-color:rgba(37,99,235,0.4);box-shadow:0 20px 60px rgba(37,99,235,0.15)}
+.service-card:hover::before{opacity:1}
+
+/* ── Testimonial Card ── */
+.testimonial-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px;transition:all .4s}
+.testimonial-card:hover{transform:translateY(-4px);border-color:rgba(37,99,235,0.3)}
+
+/* ── FAQ ── */
+.faq-item{border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;margin-bottom:12px}
+.faq-btn{width:100%;text-align:left;background:rgba(255,255,255,0.03);color:#fff;padding:20px 24px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:500;display:flex;justify-content:space-between;align-items:center;transition:background .3s}
+.faq-btn:hover{background:rgba(255,255,255,0.06)}
+.faq-content{background:rgba(255,255,255,0.02);padding:0 24px;max-height:0;overflow:hidden;transition:all .4s;color:var(--gray);font-size:15px;line-height:1.7}
+.faq-content.open{max-height:200px;padding:20px 24px}
+
+/* ── Floating Buttons ── */
+.whatsapp-btn{position:fixed;bottom:28px;right:28px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1000;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:transform .3s}
+.whatsapp-btn:hover{transform:scale(1.1)}
+.whatsapp-btn::before{content:'';position:absolute;width:60px;height:60px;background:#25D366;border-radius:50%;animation:pulse-ring 2s ease-out infinite;opacity:.5}
+.back-top{position:fixed;bottom:100px;right:28px;width:44px;height:44px;background:rgba(37,99,235,0.8);border:1px solid rgba(37,99,235,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:999;cursor:pointer;transition:all .3s;font-size:18px}
+.back-top:hover{background:#2563EB;transform:translateY(-3px)}
+
+/* ── Sticky Mobile Call ── */
+.sticky-call{display:none;position:fixed;bottom:0;left:0;right:0;z-index:1000;background:linear-gradient(135deg,#1d4ed8,#2563EB);padding:14px;text-align:center;font-weight:700;font-size:16px;text-decoration:none;color:#fff}
+@media(max-width:768px){.sticky-call{display:block}}
+
+/* ── Grid Helpers ── */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.grid-auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+
+/* ── Navbar ── */
+nav{position:fixed;top:44px;left:0;right:0;z-index:100;transition:all .4s}
+nav.scrolled{top:0;background:rgba(11,18,32,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);box-shadow:0 4px 30px rgba(0,0,0,0.3)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:15px;font-weight:500;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:#2563EB;transition:width .3s;border-radius:2px}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+@media(max-width:900px){.nav-links{display:none}}
+
+/* ── Mobile Menu ── */
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(11,18,32,0.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;font-size:28px;font-family:'Syne',sans-serif;font-weight:700;text-decoration:none;opacity:0;animation:slide-up .5s ease forwards}
+
+/* ── Section & Container ── */
+section{padding:100px 24px}
+.container{max-width:1280px;margin:0 auto}
+
+/* ── Hero ── */
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.4);border-radius:100px;padding:10px 20px;font-size:13px;font-weight:600;color:#93c5fd;margin-bottom:32px}
+.hero-badge-dot{width:8px;height:8px;background:#2563EB;border-radius:50%;animation:blink 2s ease-in-out infinite}
+
+/* ── Stat ── */
+.stat-num{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;line-height:1;color:#fff}
+
+/* ── Gallery ── */
+.gallery-item{border-radius:16px;overflow:hidden;position:relative;background:#13243d;aspect-ratio:4/3}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gallery-item:hover img{transform:scale(1.06)}
+.gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,18,32,0.8),transparent);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:20px}
+.gallery-item:hover .overlay{opacity:1}
+
+/* ── City Chip ── */
+.city-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 20px;font-size:15px;font-weight:500;color:rgba(255,255,255,0.85);transition:all .3s}
+.city-chip:hover{background:rgba(37,99,235,0.15);border-color:rgba(37,99,235,0.4);color:#fff}
+
+/* ── Icon Box ── */
+.icon-box{width:56px;height:56px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;transition:all .4s;flex-shrink:0}
+.service-card:hover .icon-box{background:rgba(37,99,235,0.3);transform:scale(1.1)}
+
+.star{color:#f59e0b;font-size:16px}
+
+.banner-mobile  { display: none; }
+.banner-desktop { display: block; }
+
+/* ── Footer ── */
+footer{background:#060d1a;border-top:1px solid rgba(255,255,255,0.06)}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE BREAKPOINTS
+───────────────────────────────────────────── */
+
+/* ── 1280px: Constrain max widths ── */
+@media(max-width:1280px){
+  .container{padding:0 32px}
+}
+
+/* ── 1024px: Tablet landscape ── */
+@media(max-width:1024px){
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+
+  /* Hero right visual – reduce size */
+  .hero-right-card{
+    width:clamp(220px,30%,380px) !important;
+    right:-10% !important;
+  }
+
+  /* Why Us two-col grid */
+  .why-us-grid{
+    grid-template-columns:1fr !important;
+    gap:40px !important;
+  }
+
+  /* About two-col grid */
+  .about-grid{
+    grid-template-columns:1fr !important;
+    gap:40px !important;
+  }
+
+  /* Contact two-col grid */
+  .contact-grid{
+    grid-template-columns:1fr !important;
+    gap:40px !important;
+  }
+
+  /* Stats grid */
+  .stats-inner{
+    grid-template-columns:repeat(2,1fr) !important;
+  }
+  .stats-inner > div:nth-child(2){
+    border-right:none !important;
+  }
+  .stats-inner > div:nth-child(odd){
+    border-right:1px solid rgba(255,255,255,0.07) !important;
+  }
+}
+
+/* ── 768px: Tablet portrait / large phone ── */
+@media(max-width:768px){
+  section{padding:72px 20px !important}
+
+  /* Typography scale */
+  h1{font-size:clamp(34px,9vw,52px) !important;line-height:1.1 !important}
+  h2{font-size:clamp(26px,7vw,38px) !important;line-height:1.2 !important}
+  h3{font-size:clamp(16px,4vw,22px) !important}
+
+  /* Buttons: full width on mobile hero, normal elsewhere */
+  .hero-ctas{flex-direction:column !important;align-items:stretch !important}
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-outline,
+  .hero-ctas a{width:100% !important;justify-content:center !important;text-align:center !important}
+
+  /* Navbar */
+  .nav-inner{padding:0 18px !important;height:64px !important}
+  nav{top:38px !important}
+  nav.scrolled{top:0 !important}
+
+  /* Emergency banner */
+  .emergency-banner{font-size:11px !important;padding:8px 14px !important;line-height:1.5}
+
+  /* Hero adjustments */
+  .hero-right-card{display:none !important} /* hide floating card on mobile */
+  .hero-trust-strip{flex-direction:row !important;flex-wrap:wrap !important;gap:16px !important}
+
+  /* Glass padding */
+  .glass{padding:24px !important}
+
+  /* Contact form grid */
+  .form-row-2{grid-template-columns:1fr !important}
+
+  /* WhatsApp + back-top */
+  .whatsapp-btn{width:52px;height:52px;right:16px;bottom:76px}
+  .whatsapp-btn::before{width:52px;height:52px}
+  .back-top{right:16px;bottom:140px;width:40px;height:40px;font-size:16px}
+
+  /* Sticky call banner */
+  .sticky-call{font-size:14px;padding:12px}
+
+  /* FAQ button */
+  .faq-btn{font-size:14px !important;padding:16px 18px !important}
+  .faq-content.open{padding:16px 18px !important}
+
+  /* Gallery filter buttons wrap */
+  .gallery-filters{gap:8px !important}
+  .gallery-filters button{font-size:12px !important;padding:7px 14px !important}
+
+  /* Service areas chips */
+  .city-chip{padding:10px 14px;font-size:13px}
+
+  /* Testimonial card padding */
+  .testimonial-card{padding:24px !important}
+
+  /* Before/After height */
+  .before-after-inner{height:260px !important}
+
+  /* Stats grid 2-col on tablet */
+  .stats-inner{grid-template-columns:repeat(2,1fr) !important}
+  .stats-inner > div:nth-child(even){border-right:none !important}
+  .stats-inner > div:nth-child(odd){border-right:1px solid rgba(255,255,255,0.07) !important}
+  .stat-num{font-size:40px !important}
+
+  /* Footer grid */
+  .footer-grid{grid-template-columns:1fr 1fr !important;gap:32px !important}
+
+  /* Section tag */
+  .section-tag{font-size:11px;padding:5px 12px}
+}
+
+/* ── 640px: Small phones ── */
+@media(max-width:640px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr !important}
+
+  section{padding:60px 16px !important}
+
+  /* Hero badge */
+  .hero-badge{font-size:11px;padding:8px 14px;gap:8px}
+
+  /* Stat numbers */
+  .stat-num{font-size:34px !important}
+
+  /* Stats: 2-col still fine on small mobile */
+  .stats-inner{grid-template-columns:repeat(2,1fr) !important}
+
+  /* Form inputs bigger tap target */
+  input,textarea,select{font-size:16px !important;padding:13px 14px !important}
+
+  /* Contact form – full single column */
+  .form-row-2{grid-template-columns:1fr !important}
+
+  /* Footer: single column */
+  .footer-grid{grid-template-columns:1fr !important;gap:28px !important}
+
+  /* Mobile menu font size */
+  .mobile-menu a{font-size:22px}
+
+  /* Gallery grid single col */
+  .gallery-grid{grid-template-columns:1fr !important}
+
+  /* Before/After height */
+  .before-after-inner{height:220px !important}
+
+  /* Why Us feature cards 1-col */
+  .why-cards{grid-template-columns:1fr !important}
+
+  /* About checklist 1-col */
+  .about-checklist{grid-template-columns:1fr !important}
+
+  /* Hero trust strip */
+  .hero-trust-strip{gap:12px !important}
+  .hero-trust-strip > div{font-size:12px !important}
+
+  /* Service card padding */
+  .service-card{padding:22px !important}
+
+  /* Icon box */
+  .icon-box{width:48px;height:48px;font-size:20px}
+
+    .banner-mobile  { display: block; }
+  .banner-desktop { display: none;  }
+}
+
+/* ── 480px: Very small phones ── */
+@media(max-width:480px){
+  section{padding:52px 14px !important}
+
+  h1{font-size:clamp(30px,10vw,42px) !important}
+  h2{font-size:clamp(22px,8vw,32px) !important}
+
+  .hero-badge{flex-wrap:wrap;justify-content:center;text-align:center}
+
+  /* Emergency banner single line wrap */
+  .emergency-banner{font-size:10px !important}
+  .emergency-banner a{display:block;margin-top:4px}
+
+  /* Testimonial card */
+  .testimonial-card{padding:20px !important}
+
+  /* Stat */
+  .stat-num{font-size:30px !important}
+
+  /* Nav inner */
+  .nav-inner{padding:0 14px !important}
+
+  /* City chip */
+  .city-chip{font-size:12px;padding:9px 12px}
+
+  /* WhatsApp btn */
+  .whatsapp-btn{width:48px;height:48px;right:14px;bottom:70px}
+  .whatsapp-btn::before{width:48px;height:48px}
+  .back-top{right:14px;bottom:130px;width:38px;height:38px;font-size:14px}
+
+  .sticky-call{font-size:13px;padding:11px}
+
+  /* Glass padding */
+  .glass{padding:18px !important}
+
+  /* FAQ */
+  .faq-btn{font-size:13px !important;padding:14px 16px !important}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr !important}
+}
+
+/* ── Prevent image overflow ── */
+img{max-width:100%;height:auto;display:block}
+
+/* ── Overflow guard ── */
+body,html{overflow-x:hidden}
+
+/* ── Large screens: expand grids ── */
+@media(min-width:1280px){
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+// ── Data ──────────────────────────────────────────────────────────────────────
+const SERVICES = [
+  { icon: "⚡", title: "Emergency Electrical Repairs", desc: "24/7 rapid response for urgent electrical failures, outages, and hazards. We're there when you need us most." },
+  { icon: "🔌", title: "Wiring & Rewiring", desc: "Complete residential and commercial wiring solutions — from new builds to full rewiring of older properties." },
+  { icon: "📦", title: "Panel Upgrades", desc: "Modernize your electrical panel to handle today's power demands safely and efficiently." },
+  { icon: "💡", title: "Lighting Installation", desc: "Ambient, task, and accent lighting design + installation. LED upgrades and smart lighting systems." },
+  { icon: "🏢", title: "Commercial Electrical", desc: "Full-service commercial electrical for offices, retail, warehouses, and industrial facilities across Canada." },
+  { icon: "🏠", title: "Residential Electrical", desc: "All home electrical services — outlets, switches, circuits, ceiling fans, and full renovations." },
+  { icon: "🔋", title: "Generator Installation", desc: "Standby and portable generator hookups. Stay powered during outages with professional installation." },
+  { icon: "🛡️", title: "Safety Inspections", desc: "Thorough electrical safety audits and ESA-compliant inspections for peace of mind." },
+];
+
+const WHY_US = [
+  { icon: "🏆", title: "5+ Years Experience", desc: "Over a decade of delivering top-quality electrical work across Canada." },
+  { icon: "✅", title: "Licensed & Certified", desc: "All electricians are fully licensed, insured, and ESA-certified." },
+  { icon: "💰", title: "Transparent Pricing", desc: "No hidden fees. Upfront quotes and flat-rate pricing on most services." },
+  { icon: "🔒", title: "Safety First Always", desc: "Every job follows the Canadian Electrical Code and strict safety standards." },
+  { icon: "⚡", title: "Fast Response Time", desc: "Same-day and next-day appointments available. Emergency response in under 60 min." },
+  { icon: "🔧", title: "Modern Equipment", desc: "Latest diagnostic tools and professional-grade equipment on every job." },
+];
+
+const TESTIMONIALS = [
+  { name: "Arshdeep Singh", city: "Edmonton, AB", rating: 5, text: "VoltEdge completely rewired our 1960s home in under a week. Incredibly professional team — clean, punctual, and their work passed inspection first try. Worth every penny.", initials: "SM", color: "#2563EB" },
+  { name: "Jagmohan ", city: "Calgary, AB", rating: 5, text: "Had an electrical emergency at 11pm and they arrived within 45 minutes. Fixed the issue quickly and even identified a separate hazard we didn't know about. Lifesavers!", initials: "DC", color: "#059669" },
+  { name: "Jennifer Kowalski", city: "Calgary, AB", rating: 5, text: "Installed 3 EV chargers at our commercial property. Perfect work, clean installation, and they handled all the permits. Our go-to for all electrical going forward.", initials: "JK", color: "#7c3aed" },
+  { name: "Marcus Thompson", city: "Edmonton, AB", rating: 5, text: "Panel upgrade was seamless. They explained everything clearly, completed ahead of schedule, and cleaned up perfectly. Already recommended them to 4 neighbours.", initials: "MT", color: "#dc2626" },
+  { name: "Priya Sharma", city: "Mississauga, ON", rating: 5, text: "Smart lighting system installation throughout our new home. These guys are true professionals — the attention to detail is exceptional and prices are very fair.", initials: "PS", color: "#d97706" },
+  { name: "Robert Landry", city: "Ottawa, ON", rating: 5, text: "Third time using VoltEdge and they never disappoint. Generator installation was perfect — properly sized, fully permitted, and working flawlessly after 6 months.", initials: "RL", color: "#0891b2" },
+];
+
+const FAQS = [
+  { q: "Are your electricians licensed and insured in Canada?", a: "Yes, all our electricians hold valid provincial licenses and are covered by comprehensive liability insurance and WSIB. We carry all required certifications for work in every province we operate in." },
+  { q: "Do you offer 24/7 emergency electrical services?", a: "Absolutely. Our emergency response team is available around the clock, 365 days a year. We guarantee arrival within 60 minutes for emergency calls in our primary service areas." },
+  { q: "How much does an electrical panel upgrade cost?", a: "Panel upgrade costs vary based on amperage (100A, 200A, 400A), location, and permit requirements. Most residential upgrades range from $1,800–$4,500. We provide free on-site estimates." },
+  { q: "Do you pull permits for electrical work?", a: "Yes, we handle all required electrical permits through the Electrical Safety Authority (ESA) and local municipalities. All work is inspected and certified to Canadian Electrical Code standards." },
+  { q: "What areas in Canada do you serve?", a: "We primarily serve the Greater Toronto Area, Vancouver, Calgary, Edmonton, and Mississauga, with service available throughout Ontario, BC, and Alberta. Contact us for service in other regions." },
+  { q: "Can you install EV charging stations for my business?", a: "Yes! We specialize in commercial EV charging infrastructure — from single-unit installs to multi-port charging arrays. We handle design, permits, installation, and activation." },
+];
+
+const CITIES = [
+  { name: "Toronto", province: "ON", icon: "🏙️" },
+  { name: "Vancouver", province: "BC", icon: "🌊" },
+  { name: "Calgary", province: "AB", icon: "🏔️" },
+  { name: "Edmonton", province: "AB", icon: "❄️" },
+  { name: "Mississauga", province: "ON", icon: "🏘️" },
+  { name: "Ottawa", province: "ON", icon: "🍁" },
+  { name: "Hamilton", province: "ON", icon: "⚙️" },
+  { name: "Brampton", province: "ON", icon: "🌿" },
+];
+
+const GALLERY_ITEMS = [
+
+  {
+    label: "Panel Upgrade – Toronto Home",
+    category: "Residential",
+    bg: "linear-gradient(135deg,#0f2044,#1e3a5f)",
+    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4"
+  },
+
+  {
+    label: "Commercial Wiring – Calgary Office",
+    category: "Commercial",
+    bg: "linear-gradient(135deg,#1a1035,#2d1b5e)",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd"
+  },
+
+  {
+  label: "EV Charger – Vancouver",
+  category: "EV Installation",
+  image:"https://images.pexels.com/photos/9800009/pexels-photo-9800009.jpeg?auto=compress&cs=tinysrgb&w=1200"
+},
+
+  {
+    label: "Smart Lighting – Edmonton Condo",
+    category: "Lighting",
+    bg: "linear-gradient(135deg,#1c1205,#4a3200)",
+    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f"
+  },
+
+ {
+  label: "Generator – Ottawa Estate",
+  category: "Generator",
+  image:"https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1200"
+},
+
+  {
+    label: "Rewiring – Mississauga Duplex",
+    category: "Residential",
+    bg: "linear-gradient(135deg,#1f0d0d,#5e1a1a)",
+    image: "https://images.unsplash.com/photo-1558002038-1055907df827"
+  },
+];
+
+// ── Hooks ─────────────────────────────────────────────────────────────────────
+function useScrollProgress() {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const handler = () => {
+      const el = document.documentElement;
+      setProgress((el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100);
+    };
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+  return progress;
+}
+
+function useInView(threshold = 0.15) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([e]) => { if (e.isIntersecting) setInView(true); }, { threshold });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+  return [ref, inView];
+}
+
+function useCounter(target, inView, duration = 2000) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const step = Math.ceil(target / (duration / 16));
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { setCount(target); clearInterval(timer); }
+      else setCount(start);
+    }, 16);
+    return () => clearInterval(timer);
+  }, [inView, target, duration]);
+  return count;
+}
+
+// ── Responsive hook ─────────────────────────────────────────────────────────
+function useWindowWidth() {
+  const [w, setW] = useState(typeof window !== 'undefined' ? window.innerWidth : 1280);
+  useEffect(() => {
+    const h = () => setW(window.innerWidth);
+    window.addEventListener('resize', h, { passive: true });
+    return () => window.removeEventListener('resize', h);
+  }, []);
+  return w;
+}
+
+// ── Components ────────────────────────────────────────────────────────────────
+function EmergencyBanner() {
+  return (
+    <div className="emergency-banner" style={{
+      background:'linear-gradient(135deg,#1d4ed8,#2563EB)',
+      padding:'8px 16px',
+      textAlign:'center',
+      color:'#fff',
+      position:'relative',
+      zIndex:200,
+    }}>
+      {/* Desktop: single line */}
+      <div className="banner-desktop" style={{fontSize:13,fontWeight:600,letterSpacing:'.04em'}}>
+        <span>⚡</span>
+        <span style={{margin:'0 6px'}}>24/7 Emergency Electrical Services Across Canada — Call Now:</span>
+        <a href="https://wa.me/919878776190?text=Hello%20VoltEdge%20Electrical,%20I%20would%20like%20to%20get%20a%20quote%20for%20electrical%20services." style={{color:'#bfdbfe',fontWeight:700,textDecoration:'none',whiteSpace:'nowrap'}}>
+          +91-98787-76190
+        </a>
+        <span style={{marginLeft:6}}>⚡</span>
+      </div>
+
+      {/* Mobile: two clean lines */}
+      <div className="banner-mobile" style={{fontSize:11,fontWeight:600,lineHeight:1.2,padding:1}}>
+        <div>⚡ 24/7 Emergency Services — Canada-Wide</div>
+        <a href="https://wa.me/919878776190?text=Hello%20VoltEdge%20Electrical,%20I%20would%20like%20to%20get%20a%20quote%20for%20electrical%20services." style={{color:'#bfdbfe',fontWeight:700,textDecoration:'none',fontSize:13}}>
+          📞 +91-98787-76190
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function Navbar({ onMenuToggle, menuOpen }) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const h = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', h, { passive: true });
+    return () => window.removeEventListener('scroll', h);
+  }, []);
+
+  return (
+    <nav className={scrolled ? 'scrolled' : ''}>
+      <div className="nav-inner">
+        {/* Logo */}
+        <a href="#" style={{display:'flex',alignItems:'center',gap:10,textDecoration:'none',flexShrink:0}}>
+          <div style={{width:38,height:38,background:'linear-gradient(135deg,#1d4ed8,#3b82f6)',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,boxShadow:'0 4px 12px rgba(37,99,235,0.4)',flexShrink:0}}>⚡</div>
+          <div>
+            <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:20,color:'#fff',lineHeight:1}}>VoltEdge</div>
+            <div style={{fontSize:10,color:'rgba(255,255,255,0.5)',letterSpacing:'.12em',textTransform:'uppercase',fontWeight:500}}>Electrical Services</div>
+          </div>
+        </a>
+
+        {/* Desktop Nav */}
+        <div className="nav-links">
+          {['Services','About','Gallery','Testimonials','Contact'].map(n => (
+            <a key={n} href={`#${n.toLowerCase()}`}>{n}</a>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div style={{display:'flex',alignItems:'center',gap:10}}>
+          <a href="https://wa.me/919878776190?text=Hello%20VoltEdge%20Electrical,%20I%20would%20like%20to%20get%20a%20quote%20for%20electrical%20services." className="btn-outline nav-call-btn" style={{padding:'10px 18px',fontSize:14,gap:6}}>
+            📞 <span className="nav-call-label">Call Now</span>
+          </a>
+          <a href="#contact" className="btn-primary nav-quote-btn" style={{padding:'10px 20px',fontSize:14}}>Free Quote</a>
+          <button onClick={onMenuToggle} className="hamburger-btn" style={{display:'none',background:'none',border:'none',color:'#fff',fontSize:24,cursor:'pointer',padding:4,lineHeight:1}} aria-label="Menu">☰</button>
+        </div>
+      </div>
+      <style>{`
+        @media(max-width:900px){.hamburger-btn{display:block!important}}
+        @media(max-width:640px){.nav-call-btn{display:none!important}}
+        @media(max-width:480px){.nav-quote-btn{padding:9px 14px!important;font-size:13px!important}}
+      `}</style>
+    </nav>
+  );
+}
+
+function MobileMenu({ open, onClose }) {
+  return (
+    <div className={`mobile-menu ${open ? 'open' : ''}`}>
+      <button onClick={onClose} style={{position:'absolute',top:26,right:24,background:'none',border:'none',color:'#fff',fontSize:32,cursor:'pointer'}}>✕</button>
+      {['#services','#about','#gallery','#testimonials','#contact'].map((href, i) => (
+        <a key={href} href={href} onClick={onClose} style={{animationDelay:`${i * 0.08}s`}}>
+          {['Services','About','Gallery','Testimonials','Contact'][i]}
+        </a>
+      ))}
+      <a href="tel:+16479005550" className="btn-primary" style={{marginTop:16}} onClick={onClose}>📞 Call Now</a>
+    </div>
+  );
+}
+
+function Hero() {
+  const [ref, inView] = useInView(0.1);
+  const w = useWindowWidth();
+  return (
+    <section id="home" ref={ref} style={{minHeight:'100vh',display:'flex',alignItems:'center',position:'relative',overflow:'hidden',padding:'160px 24px 100px',background:'#0B1220'}}>
+      {/* BG grid */}
+      <div style={{position:'absolute',inset:0,backgroundImage:'linear-gradient(rgba(37,99,235,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.04) 1px,transparent 1px)',backgroundSize:'60px 60px',opacity:.7}}/>
+      {/* Glow orbs */}
+      <div style={{position:'absolute',top:'20%',right:'15%',width:500,height:500,background:'radial-gradient(circle,rgba(37,99,235,0.18),transparent 70%)',pointerEvents:'none'}}/>
+      <div style={{position:'absolute',bottom:'10%',left:'5%',width:350,height:350,background:'radial-gradient(circle,rgba(37,99,235,0.1),transparent 70%)',pointerEvents:'none'}}/>
+
+      <div className="container" style={{position:'relative',zIndex:1,width:'100%'}}>
+        <div style={{maxWidth: w > 900 ? 750 : '100%'}}>
+          {/* Badge */}
+          <div className="hero-badge" style={{opacity: inView ? 1 : 0, transition:'all .8s ease', flexWrap:'wrap'}}>
+            <div className="hero-badge-dot"/>
+            <span>Licensed • Insured • ESA Certified</span>
+            <span style={{background:'rgba(37,99,235,0.3)',padding:'2px 10px',borderRadius:100,fontSize:11}}>Canada-Wide</span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="font-display" style={{fontSize:'clamp(36px,6vw,80px)',fontWeight:800,lineHeight:1.05,marginBottom:28,opacity:inView?1:0,transform:inView?'none':'translateY(30px)',transition:'all .8s ease .2s'}}>
+            <span className="gradient-text">Licensed & Trusted</span>
+            <br/>Electrical Services
+            <br/><span style={{color:'rgba(255,255,255,0.5)',fontSize:'0.65em',fontWeight:600}}>Across Canada</span>
+          </h1>
+
+          <p style={{fontSize:'clamp(15px,2vw,18px)',color:'rgba(255,255,255,0.65)',lineHeight:1.7,marginBottom:44,maxWidth:560,opacity:inView?1:0,transform:inView?'none':'translateY(20px)',transition:'all .8s ease .35s'}}>
+            From emergency repairs to full electrical installations — VoltEdge delivers safe, code-compliant, and professional electrical work for homes and businesses nationwide.
+          </p>
+
+          {/* CTAs */}
+          <div className="hero-ctas" style={{display:'flex',flexWrap:'wrap',gap:16,marginBottom:64,opacity:inView?1:0,transition:'all .8s ease .5s'}}>
+            <a href="tel:+16479005550" className="btn-primary" style={{fontSize:16,padding:'16px 32px'}}>📞 Call Now</a>
+            <a href="#contact" className="btn-outline" style={{fontSize:16,padding:'16px 32px'}}>Get Free Estimate →</a>
+            <a href="#contact" style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:8,color:'rgba(255,255,255,0.6)',fontSize:15,fontWeight:500,textDecoration:'none',padding:'16px 8px',transition:'color .3s'}} onMouseOver={e=>e.currentTarget.style.color='#fff'} onMouseOut={e=>e.currentTarget.style.color='rgba(255,255,255,0.6)'}>
+              📅 Book Appointment
+            </a>
+          </div>
+
+          {/* Trust strip */}
+          <div className="hero-trust-strip" style={{display:'flex',flexWrap:'wrap',gap:20,opacity:inView?1:0,transition:'all .8s ease .65s'}}>
+            {[['✅','Licensed Electricians'],['🛡️','Fully Insured'],['⚡','60-Min Response'],['🕐','24/7 Support']].map(([icon, label]) => (
+              <div key={label} style={{display:'flex',alignItems:'center',gap:8,color:'rgba(255,255,255,0.6)',fontSize:14,fontWeight:500}}>
+                <span>{icon}</span> {label}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right visual – hidden on mobile via CSS class */}
+        <div className="hero-right-card animate-float" style={{position:'absolute',right:'0%',top:'20%',transform:'translateY(-50%)',width:'clamp(280px,38%,520px)',opacity:inView?1:0,transition:'all 1.2s ease .4s',pointerEvents:'none'}} aria-hidden="true">
+          <div style={{width:'100%',aspectRatio:'4/5',borderRadius:24,background:'linear-gradient(135deg,#0f2044 0%,#1e3a6e 50%,#0d1f3c 100%)',border:'1px solid rgba(37,99,235,0.3)',display:'flex',flexDirection:'column',justifyContent:'flex-end',padding:32,boxShadow:'0 40px 100px rgba(0,0,0,0.5), 0 0 80px rgba(37,99,235,0.15)'}}>
+            <div style={{position:'absolute',top:0,left:0,right:0,bottom:0,borderRadius:24,overflow:'hidden'}}>
+              <div style={{position:'absolute',inset:0,background:'linear-gradient(135deg,#0f1e3d,#1a3060,#0d1a30)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <div style={{fontSize:80,opacity:.15}}>⚡</div>
+              </div>
+              <svg style={{position:'absolute',inset:0,width:'100%',height:'0%',opacity:.08}} viewBox="0 0 400 500">
+                <line x1="50" y1="100" x2="350" y2="100" stroke="#2563EB" strokeWidth="1"/>
+                <line x1="200" y1="50" x2="200" y2="450" stroke="#2563EB" strokeWidth="1"/>
+                <circle cx="200" cy="100" r="6" fill="none" stroke="#2563EB" strokeWidth="1.5"/>
+                <circle cx="200" cy="250" r="6" fill="none" stroke="#2563EB" strokeWidth="1.5"/>
+                <line x1="100" y1="200" x2="300" y2="200" stroke="#2563EB" strokeWidth="1"/>
+                <circle cx="100" cy="200" r="4" fill="#2563EB"/>
+                <circle cx="300" cy="200" r="4" fill="#2563EB"/>
+                <rect x="160" y="210" width="80" height="50" rx="4" fill="none" stroke="#3b82f6" strokeWidth="1.5"/>
+                <line x1="100" y1="350" x2="300" y2="350" stroke="#2563EB" strokeWidth="1"/>
+              </svg>
+            </div>
+            {/* innner box*/}
+           <div style={{
+  width:'100%',
+  aspectRatio:'3/5',
+  borderRadius:24,
+  position:'relative',
+  overflow:'hidden',
+  display:'flex',
+  flexDirection:'column',
+  justifyContent:'flex-end',
+  padding:32,
+  boxShadow:'0 40px 100px rgba(0,0,0,0.5), 0 0 80px rgba(37,99,235,0.15)',
+  border:'px solid rgba(37,99,235,0.3)',
+
+  /* ── Background image ── */
+  backgroundImage:'url("herosection.jpg")',
+  backgroundSize:'cover',
+  backgroundPosition:'center',
+  backgroundRepeat:'no-repeat',
+}}>
+
+  {/* Dark overlay on top of image */}
+  <div style={{
+    position:'absolute',
+    inset:0,
+    background:'linear-gradient(135deg, rgba(15,32,68,0.75), rgba(13,31,60,0.85))',
+    zIndex:0,
+  }}/>
+
+  {/* Circuit SVG — keep as-is, just add zIndex */}
+  <svg style={{position:'absolute',inset:0,width:'100%',height:'100%',opacity:.08,zIndex:1}} viewBox="0 0 400 500">
+    <line x1="50" y1="100" x2="350" y2="100" stroke="#2563EB" strokeWidth="1"/>
+    <line x1="200" y1="50" x2="200" y2="450" stroke="#2563EB" strokeWidth="1"/>
+    <circle cx="200" cy="100" r="6" fill="none" stroke="#2563EB" strokeWidth="1.5"/>
+    <circle cx="200" cy="250" r="6" fill="none" stroke="#2563EB" strokeWidth="1.5"/>
+    <line x1="100" y1="200" x2="300" y2="200" stroke="#2563EB" strokeWidth="1"/>
+    <circle cx="100" cy="200" r="4" fill="#2563EB"/>
+    <circle cx="300" cy="200" r="4" fill="#2563EB"/>
+    <rect x="160" y="210" width="80" height="50" rx="4" fill="none" stroke="#3b82f6" strokeWidth="1.5"/>
+    <line x1="100" y1="350" x2="300" y2="350" stroke="#2563EB" strokeWidth="1"/>
+  </svg>
+
+  {/* Stats badge — add zIndex:2 so it sits above overlay + SVG */}
+  <div style={{
+    position:'relative',
+    zIndex:2,
+    background:'rgba(11,18,32,0.85)',
+    backdropFilter:'blur(20px)',
+    borderRadius:16,
+    padding:'20px 24px',
+    border:'1px solid rgba(37,99,235,0.3)'
+  }}>
+    <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:12}}>
+      <div style={{width:44,height:44,background:'linear-gradient(135deg,#1d4ed8,#2563EB)',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20,flexShrink:0}}>⚡</div>
+      <div>
+        <div style={{fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:15}}>Emergency Response</div>
+        <div style={{fontSize:12,color:'rgba(255,255,255,0.5)'}}>Average ETA: 47 minutes</div>
+      </div>
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
+      {[['5,000+','Projects Done'],['98%','Satisfaction'],['10+','Years Exp.'],['24/7','Available']].map(([n, l]) => (
+        <div key={l} style={{background:'rgba(37,99,235,0.1)',borderRadius:10,padding:'10px 14px'}}>
+          <div style={{fontFamily:'Syne,sans-serif',fontWeight:400,fontSize:17,color:'#60a5fa'}}>{n}</div>
+          <div style={{fontSize:11,color:'rgba(255,255,255,0.5)',marginTop:2}}>{l}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  const [ref, inView] = useInView(0.1);
+  return (
+    <section id="services" ref={ref} style={{padding:'100px 24px',background:'#090f1c'}}>
+      <div className="container">
+        <div style={{textAlign:'center',marginBottom:64}}>
+          <div className="section-tag">Our Services</div>
+          <h2 className="font-display" style={{fontSize:'clamp(28px,4vw,52px)',fontWeight:800,marginBottom:16}}>
+            Complete Electrical <span className="gradient-text">Solutions</span>
+          </h2>
+          <p style={{color:'rgba(255,255,255,0.55)',fontSize:'clamp(15px,2vw,17px)',maxWidth:520,margin:'0 auto'}}>
+            From emergency repairs to large-scale installations — one team, every electrical need.
+          </p>
+        </div>
+
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:20}}>
+          {SERVICES.map((s, i) => (
+            <div key={i} className="service-card" style={{animationDelay:`${i * 0.08}s`,opacity:inView?1:0,transform:inView?'none':'translateY(30px)',transition:`all .6s ease ${i * 0.08}s`}}>
+              <div className="icon-box">{s.icon}</div>
+              <h3 className="font-display" style={{fontSize:'clamp(15px,2vw,18px)',fontWeight:700,marginBottom:10}}>{s.title}</h3>
+              <p style={{color:'rgba(255,255,255,0.55)',fontSize:14,lineHeight:1.7,marginBottom:20}}>{s.desc}</p>
+              <a href="#contact" style={{display:'inline-flex',alignItems:'center',gap:6,color:'#60a5fa',fontSize:14,fontWeight:600,textDecoration:'none',transition:'gap .3s'}}
+                onMouseOver={e=>e.currentTarget.style.gap='10px'} onMouseOut={e=>e.currentTarget.style.gap='6px'}>
+                Learn More →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyUs() {
+  const [ref, inView] = useInView(0.1);
+  return (
+    <section ref={ref} style={{padding:'100px 24px',background:'#0B1220'}}>
+      <div className="container">
+        <div className="why-us-grid" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:80,alignItems:'center'}}>
+          <div style={{opacity:inView?1:0,transform:inView?'none':'translateX(-30px)',transition:'all .8s ease'}}>
+            <div className="section-tag">Why VoltEdge</div>
+            <h2 className="font-display" style={{fontSize:'clamp(26px,3.5vw,48px)',fontWeight:800,marginBottom:20}}>
+              The <span className="gradient-text">Smarter Choice</span> for Electrical Work
+            </h2>
+            <p style={{color:'rgba(255,255,255,0.55)',fontSize:'clamp(15px,2vw,17px)',lineHeight:1.75,marginBottom:36}}>
+              We combine licensed expertise, rapid response, and transparent pricing to deliver electrical services you can trust — on time, on budget, and done right the first time.
+            </p>
+            <a href="#contact" className="btn-primary">Get Your Free Quote →</a>
+          </div>
+          <div className="why-cards" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,opacity:inView?1:0,transition:'all .8s ease .3s'}}>
+            {WHY_US.map((item, i) => (
+              <div key={i} className="glass" style={{borderRadius:16,padding:24,transition:'all .3s'}}
+                onMouseOver={e=>e.currentTarget.style.transform='translateY(-4px)'} onMouseOut={e=>e.currentTarget.style.transform='none'}>
+                <div style={{fontSize:28,marginBottom:12}}>{item.icon}</div>
+                <h4 style={{fontWeight:700,fontSize:15,marginBottom:8,fontFamily:'Syne,sans-serif'}}>{item.title}</h4>
+                <p style={{color:'rgba(255,255,255,0.5)',fontSize:13,lineHeight:1.6}}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StatCounter({ target, suffix = '', label }) {
+  const [ref, inView] = useInView(0.3);
+  const count = useCounter(target, inView);
+  return (
+    <div ref={ref} style={{textAlign:'center',padding:'32px 16px'}}>
+      <div className="stat-num" style={{color:'#60a5fa',marginBottom:8}}>
+        {count.toLocaleString()}{suffix}
+      </div>
+      <div style={{color:'rgba(255,255,255,0.55)',fontSize:'clamp(12px,1.5vw,15px)',fontWeight:500}}>{label}</div>
+    </div>
+  );
+}
+
+function Stats() {
+  return (
+    <section style={{padding:'80px 24px',background:'linear-gradient(135deg,#0d1f3c,#0B1220)'}}>
+      <div className="container">
+        <div className="stats-inner" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:0,borderRadius:20,overflow:'hidden',border:'1px solid rgba(255,255,255,0.07)'}}>
+          {[
+            { target: 5, suffix: '+', label: 'Years Experience' },
+            { target: 800, suffix: '+', label: 'Projects Completed' },
+            { target: 700, suffix: '+', label: 'Happy Customers' },
+            { target: 24, suffix: '/7', label: 'Emergency Support' },
+          ].map((s, i) => (
+            <div key={i} style={{background:'rgba(255,255,255,0.03)',borderRight:i < 3?'1px solid rgba(255,255,255,0.07)':'none'}}>
+              <StatCounter {...s} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  const [ref, inView] = useInView(0.1);
+  return (
+    <section id="testimonials" ref={ref} style={{padding:'100px 24px',background:'#090f1c'}}>
+      <div className="container">
+        <div style={{textAlign:'center',marginBottom:64}}>
+          <div className="section-tag">Customer Reviews</div>
+          <h2 className="font-display" style={{fontSize:'clamp(26px,4vw,52px)',fontWeight:800,marginBottom:16}}>
+            What Our Clients <span className="gradient-text">Say</span>
+          </h2>
+          <p style={{color:'rgba(255,255,255,0.5)',fontSize:'clamp(14px,2vw,17px)'}}>5-star rated electrical services across Canada</p>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:4,marginTop:16}}>
+            {'★★★★★'.split('').map((s, i) => <span key={i} style={{color:'#f59e0b',fontSize:22}}>{s}</span>)}
+            <span style={{color:'rgba(255,255,255,0.5)',fontSize:14,marginLeft:8}}>4.9/5 from 400+ reviews</span>
+          </div>
+        </div>
+
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:24}}>
+          {TESTIMONIALS.map((t, i) => (
+            <div key={i} className="testimonial-card" style={{opacity:inView?1:0,transform:inView?'none':'translateY(30px)',transition:`all .6s ease ${i * 0.1}s`}}>
+              <div style={{display:'flex',gap:1,marginBottom:16}}>
+                {'★★★★★'.split('').map((s, j) => <span key={j} className="star">{s}</span>)}
+              </div>
+              <p style={{color:'rgba(255,255,255,0.75)',fontSize:'clamp(13px,1.5vw,15px)',lineHeight:1.75,marginBottom:24}}>&ldquo;{t.text}&rdquo;</p>
+              <div style={{display:'flex',alignItems:'center',gap:12,paddingTop:20,borderTop:'1px solid rgba(255,255,255,0.06)'}}>
+                <div style={{width:44,height:44,borderRadius:'50%',background:t.color,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:15,flexShrink:0}}>{t.initials}</div>
+                <div style={{minWidth:0}}>
+                  <div style={{fontWeight:700,fontSize:15,fontFamily:'Syne,sans-serif',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{t.name}</div>
+                  <div style={{fontSize:13,color:'rgba(255,255,255,0.45)'}}>{t.city}</div>
+                </div>
+                <div style={{marginLeft:'auto',color:'rgba(255,255,255,0.2)',fontSize:11,flexShrink:0}}>Verified ✓</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ServiceAreas() {
+  const [ref, inView] = useInView(0.1);
+  return (
+    <section ref={ref} style={{padding:'80px 24px',background:'#0B1220'}}>
+      <div className="container" style={{textAlign:'center'}}>
+        <div className="section-tag">Service Areas</div>
+        <h2 className="font-display" style={{fontSize:'clamp(24px,3.5vw,44px)',fontWeight:800,marginBottom:16}}>
+          Serving <span className="gradient-text">Across Canada</span>
+        </h2>
+        <p style={{color:'rgba(255,255,255,0.5)',fontSize:'clamp(13px,2vw,16px)',marginBottom:48}}>Professional electrical services in major Canadian cities</p>
+        <div style={{display:'flex',flexWrap:'wrap',gap:12,justifyContent:'center'}}>
+          {CITIES.map((c, i) => (
+            <div key={i} className="city-chip" style={{opacity:inView?1:0,transition:`all .5s ease ${i*0.07}s`}}>
+              <span>{c.icon}</span>
+              <span>{c.name}</span>
+              <span style={{color:'rgba(255,255,255,0.35)',fontSize:13}}>{c.province}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Gallery() {
+  const [ref, inView] = useInView(0.1);
+  const [filter, setFilter] = useState('All');
+  const categories = ['All', 'Residential', 'Commercial', 'EV Installation', 'Lighting'];
+  const filtered = filter === 'All' ? GALLERY_ITEMS : GALLERY_ITEMS.filter(g => g.category === filter);
+
+  return (
+    <section id="gallery" ref={ref} style={{padding:'100px 24px',background:'#090f1c'}}>
+      <div className="container">
+        <div style={{textAlign:'center',marginBottom:48}}>
+          <div className="section-tag">Our Work</div>
+          <h2 className="font-display" style={{fontSize:'clamp(26px,4vw,52px)',fontWeight:800,marginBottom:16}}>
+            Recent <span className="gradient-text">Projects</span>
+          </h2>
+          <p style={{color:'rgba(255,255,255,0.5)',fontSize:'clamp(14px,2vw,17px)',marginBottom:36}}>Real work, real results — see what we've delivered</p>
+          <div className="gallery-filters" style={{display:'flex',gap:10,justifyContent:'center',flexWrap:'wrap'}}>
+            {categories.map(c => (
+              <button key={c} onClick={() => setFilter(c)} style={{background:filter===c?'#2563EB':'rgba(255,255,255,0.06)',border:'1px solid',borderColor:filter===c?'#2563EB':'rgba(255,255,255,0.1)',color:'#fff',borderRadius:100,padding:'8px 20px',fontSize:13,fontWeight:600,cursor:'pointer',transition:'all .3s'}}>
+                {c}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="gallery-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(260px,1fr))',gap:20}}>
+          {filtered.map((item, i) => (
+            <div key={i} className="gallery-item" style={{opacity:inView?1:0,transform:inView?'none':'scale(0.95)',transition:`all .5s ease ${i*0.08}s`}}>
+             <div
+  style={{
+    width:'100%',
+    height:'100%',
+    minHeight:260,
+
+    backgroundImage:`
+      linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+      ),
+      url(${item.image})
+    `,
+
+    backgroundSize:'cover',
+    backgroundPosition:'center',
+    backgroundRepeat:'no-repeat'
+  }}
+>
+</div>
+              <div className="overlay">
+                <div>
+                  <div style={{fontSize:11,color:'#93c5fd',fontWeight:600,marginBottom:4,textTransform:'uppercase',letterSpacing:'.08em'}}>{item.category}</div>
+                  <div style={{fontWeight:700,fontSize:15,fontFamily:'Syne,sans-serif'}}>{item.label}</div>
+                </div>
+              </div>
+              <div style={{position:'absolute',top:16,left:16,background:'rgba(37,99,235,0.8)',borderRadius:6,padding:'4px 10px',fontSize:11,fontWeight:600,color:'#fff'}}>{item.category}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BeforeAfter() {
+  const [pos, setPos] = useState(50);
+  const [ref, inView] = useInView(0.2);
+  const drag = useRef(false);
+  const container = useRef(null);
+
+  const move = (clientX) => {
+    if (!drag.current || !container.current) return;
+    const rect = container.current.getBoundingClientRect();
+    const p = Math.min(Math.max(((clientX - rect.left) / rect.width) * 100, 5), 95);
+    setPos(p);
+  };
+
+  return (
+    <section ref={ref} style={{padding:'80px 24px',background:'#0B1220'}}>
+      <div className="container">
+        <div style={{textAlign:'center',marginBottom:48}}>
+          <div className="section-tag">Transformations</div>
+          <h2 className="font-display" style={{fontSize:'clamp(24px,3.5vw,44px)',fontWeight:800,marginBottom:12}}>
+            Before & <span className="gradient-text">After</span>
+          </h2>
+          <p style={{color:'rgba(255,255,255,0.5)',fontSize:'clamp(13px,2vw,16px)'}}>Drag to compare — outdated panels to modern upgrades</p>
+        </div>
+        <div style={{maxWidth:700,margin:'0 auto',borderRadius:20,overflow:'hidden',border:'1px solid rgba(255,255,255,0.08)',userSelect:'none'}}>
+          <div className="before-after-inner" ref={container}
+            style={{position:'relative',height:360,cursor:'ew-resize'}}
+            onMouseDown={e => { drag.current = true; move(e.clientX); }}
+            onMouseUp={() => { drag.current = false; }}
+            onMouseLeave={() => { drag.current = false; }}
+            onMouseMove={e => move(e.clientX)}
+            onTouchStart={e => { drag.current = true; }}
+            onTouchEnd={() => { drag.current = false; }}
+            onTouchMove={e => move(e.touches[0].clientX)}>
+            <div style={{position:'absolute',inset:0,background:'linear-gradient(135deg,#1a0a0a,#3d1a1a)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+              <div style={{textAlign:'center'}}>
+                <div style={{fontSize:'clamp(32px,6vw,48px)',marginBottom:12,opacity:.5}}>🔧</div>
+                <div style={{fontSize:'clamp(20px,5vw,32px)',fontFamily:'Syne,sans-serif',fontWeight:800,color:'rgba(255,100,100,0.6)'}}>BEFORE</div>
+                <div style={{color:'rgba(255,255,255,0.3)',fontSize:'clamp(11px,2vw,14px)',marginTop:8}}>Outdated 60A fuse panel</div>
+              </div>
+            </div>
+            <div style={{position:'absolute',inset:0,clipPath:`inset(0 ${100-pos}% 0 0)`,background:'linear-gradient(135deg,#0d1f3c,#1a3060)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+              <div style={{textAlign:'center'}}>
+                <div style={{fontSize:'clamp(32px,6vw,48px)',marginBottom:12,opacity:.7}}>⚡</div>
+                <div style={{fontSize:'clamp(20px,5vw,32px)',fontFamily:'Syne,sans-serif',fontWeight:800,color:'rgba(96,165,250,0.8)'}}>AFTER</div>
+                <div style={{color:'rgba(255,255,255,0.5)',fontSize:'clamp(11px,2vw,14px)',marginTop:8}}>Modern 200A breaker panel</div>
+              </div>
+            </div>
+            <div style={{position:'absolute',top:0,bottom:0,left:`${pos}%`,transform:'translateX(-50%)',width:3,background:'#2563EB',zIndex:10}}>
+              <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:44,height:44,background:'#2563EB',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,boxShadow:'0 0 20px rgba(37,99,235,0.6)',cursor:'ew-resize',userSelect:'none'}}>⟺</div>
+            </div>
+            <div style={{position:'absolute',top:16,left:16,background:'rgba(200,0,0,0.7)',borderRadius:6,padding:'4px 12px',fontSize:12,fontWeight:700}}>BEFORE</div>
+            <div style={{position:'absolute',top:16,right:16,background:'rgba(37,99,235,0.8)',borderRadius:6,padding:'4px 12px',fontSize:12,fontWeight:700}}>AFTER</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQ() {
+  const [open, setOpen] = useState(null);
+  return (
+    <section style={{padding:'100px 24px',background:'#090f1c'}}>
+      <div className="container" style={{maxWidth:800,margin:'0 auto'}}>
+        <div style={{textAlign:'center',marginBottom:56}}>
+          <div className="section-tag">FAQ</div>
+          <h2 className="font-display" style={{fontSize:'clamp(26px,4vw,48px)',fontWeight:800,marginBottom:16}}>
+            Common <span className="gradient-text">Questions</span>
+          </h2>
+        </div>
+        {FAQS.map((f, i) => (
+          <div key={i} className="faq-item">
+            <button className="faq-btn" onClick={() => setOpen(open === i ? null : i)}>
+              <span style={{fontFamily:'DM Sans,sans-serif',fontSize:'clamp(13px,2vw,16px)',paddingRight:12}}>{f.q}</span>
+              <span style={{fontSize:20,transition:'transform .3s',transform:open===i?'rotate(45deg)':'none',color:'#2563EB',flexShrink:0}}>+</span>
+            </button>
+            <div className={`faq-content ${open === i ? 'open' : ''}`}>{f.a}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  const [form, setForm] = useState({ name: '', phone: '', email: '', service: '', date: '', message: '' });
+  const [sent, setSent] = useState(false);
+  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+  const submit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/send-quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setSent(true);
+        setForm({ name: '', phone: '', email: '', service: '', date: '', message: '' });
+      } else {
+        alert("Failed to send request");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Server error");
+    }
+  };
+
+  return (
+    <section id="contact" style={{padding:'100px 24px',background:'#0B1220'}}>
+      <div className="container">
+        <div className="contact-grid" style={{display:'grid',gridTemplateColumns:'1fr 1.2fr',gap:64,alignItems:'start'}}>
+          {/* Info */}
+          <div>
+            <div className="section-tag">Contact Us</div>
+            <h2 className="font-display" style={{fontSize:'clamp(24px,3.5vw,44px)',fontWeight:800,marginBottom:20}}>
+              Get Your <span className="gradient-text">Free Quote</span> Today
+            </h2>
+            <p style={{color:'rgba(255,255,255,0.55)',fontSize:'clamp(14px,2vw,16px)',lineHeight:1.75,marginBottom:36}}>
+              Tell us about your project and we'll get back to you within 30 minutes during business hours. Emergency? Call us directly — 24/7.
+            </p>
+            {[
+              { icon:'📞', label:'Phone', value:'+1 (647) 900-5550', href:'tel:+16479005550' },
+              { icon:'📧', label:'Email', value:'info@voltedge.ca', href:'mailto:info@voltedge.ca' },
+              { icon:'📍', label:'Headquarters', value:'Edmonton, Alberta, Canada', href:'#' },
+              { icon:'🕐', label:'Business Hours', value:'Mon-Sat: 7AM–8PM | Emergency: 24/7', href:'#' },
+            ].map((item, i) => (
+              <div key={i} style={{display:'flex',alignItems:'flex-start',gap:16,marginBottom:24}}>
+                <div className="icon-box" style={{width:48,height:48,fontSize:20,marginBottom:0,flexShrink:0}}>{item.icon}</div>
+                <div style={{minWidth:0}}>
+                  <div style={{fontSize:12,color:'rgba(255,255,255,0.4)',fontWeight:600,textTransform:'uppercase',letterSpacing:'.1em',marginBottom:4}}>{item.label}</div>
+                  <a href={item.href} style={{color:'rgba(255,255,255,0.85)',fontSize:'clamp(13px,1.5vw,15px)',fontWeight:500,textDecoration:'none',wordBreak:'break-word'}}>{item.value}</a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Form */}
+          <div className="glass" style={{borderRadius:20,padding:40}}>
+            {sent ? (
+              <div style={{textAlign:'center',padding:'40px 0'}}>
+                <div style={{fontSize:60,marginBottom:20}}>✅</div>
+                <h3 className="font-display" style={{fontSize:'clamp(18px,3vw,24px)',fontWeight:800,marginBottom:12}}>Quote Request Sent!</h3>
+                <p style={{color:'rgba(255,255,255,0.55)',fontSize:'clamp(14px,2vw,16px)',lineHeight:1.7}}>We'll contact you within 30 minutes. For emergencies, call <a href="tel:+16479005550" style={{color:'#60a5fa'}}>+1 (647) 900-5550</a></p>
+                <button onClick={() => setSent(false)} className="btn-primary" style={{marginTop:24}}>Send Another Request</button>
+              </div>
+            ) : (
+              <form onSubmit={submit}>
+                <h3 className="font-display" style={{fontSize:'clamp(17px,2.5vw,22px)',fontWeight:800,marginBottom:28}}>Request a Free Estimate</h3>
+                <div className="form-row-2" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:16}}>
+                  <div>
+                    <label style={{fontSize:12,color:'rgba(255,255,255,0.5)',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',display:'block',marginBottom:8}}>Full Name *</label>
+                    <input type="text" placeholder="John Smith" required value={form.name} onChange={e => set('name', e.target.value)}/>
+                  </div>
+                  <div>
+                    <label style={{fontSize:12,color:'rgba(255,255,255,0.5)',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',display:'block',marginBottom:8}}>Phone *</label>
+                    <input type="tel" placeholder="+1 (647) 000-0000" required value={form.phone} onChange={e => set('phone', e.target.value)}/>
+                  </div>
+                </div>
+                <div style={{marginBottom:16}}>
+                  <label style={{fontSize:12,color:'rgba(255,255,255,0.5)',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',display:'block',marginBottom:8}}>Email Address *</label>
+                  <input type="email" placeholder="john@example.com" required value={form.email} onChange={e => set('email', e.target.value)}/>
+                </div>
+                <div className="form-row-2" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:16}}>
+                  <div>
+                    <label style={{fontSize:12,color:'rgba(255,255,255,0.5)',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',display:'block',marginBottom:8}}>Service Needed</label>
+                    <select value={form.service} onChange={e => set('service', e.target.value)}>
+                      <option value="">Select service...</option>
+                      {SERVICES.map(s => <option key={s.title} value={s.title}>{s.title}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{fontSize:12,color:'rgba(255,255,255,0.5)',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',display:'block',marginBottom:8}}>Preferred Date</label>
+                    <input type="date" value={form.date} onChange={e => set('date', e.target.value)}/>
+                  </div>
+                </div>
+                <div style={{marginBottom:24}}>
+                  <label style={{fontSize:12,color:'rgba(255,255,255,0.5)',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',display:'block',marginBottom:8}}>Message</label>
+                  <textarea rows={4} placeholder="Describe your electrical issue or project..." value={form.message} onChange={e => set('message', e.target.value)} style={{resize:'vertical'}}/>
+                </div>
+                <button type="submit" className="btn-primary" style={{width:'100%',justifyContent:'center',fontSize:'clamp(14px,2vw,16px)',padding:'16px'}}>
+                  ⚡ Send Free Quote Request
+                </button>
+                <p style={{textAlign:'center',fontSize:12,color:'rgba(255,255,255,0.3)',marginTop:14}}>We respond within 30 minutes · No obligation · 100% free</p>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  const [ref, inView] = useInView(0.1);
+  return (
+    <section id="about" ref={ref} style={{padding:'100px 24px',background:'#090f1c'}}>
+      <div className="container">
+        <div className="about-grid" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:64,alignItems:'center'}}>
+          <div style={{position:'relative'}}>
+            <div style={{borderRadius:24,overflow:'hidden',aspectRatio:'4/3',border:'1px solid rgba(37,99,235,0.2)',position:'relative'}}>
+              <img src="team.jpg" alt="VoltEdge Team" style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>
+              <div style={{position:'absolute',inset:0,background:'linear-gradient(to top, rgba(0,0,0,0.45), transparent)'}}/>
+              <div style={{position:'absolute',bottom:20,left:20,color:'#fff'}}>
+                <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:'clamp(18px,3vw,24px)'}}>VoltEdge Team</div>
+              </div>
+            </div>
+            <div style={{position:'absolute',bottom:-20,right:-20,background:'linear-gradient(135deg,#1d4ed8,#2563EB)',borderRadius:16,padding:'20px 24px',boxShadow:'0 20px 60px rgba(37,99,235,0.3)'}}>
+              <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:'clamp(28px,4vw,36px)'}}>5+</div>
+              <div style={{fontSize:14,opacity:.85}}>Years of Excellence</div>
+            </div>
+          </div>
+          <div style={{opacity:inView?1:0,transform:inView?'none':'translateX(30px)',transition:'all .8s ease'}}>
+            <div className="section-tag">About VoltEdge</div>
+            <h2 className="font-display" style={{fontSize:'clamp(24px,3.5vw,44px)',fontWeight:800,marginBottom:20}}>
+              Canada's <span className="gradient-text">Most Trusted</span> Electrical Team
+            </h2>
+            <p style={{color:'rgba(255,255,255,0.6)',fontSize:'clamp(14px,1.8vw,16px)',lineHeight:1.8,marginBottom:20}}>
+              Founded in Edmonton in 2014, VoltEdge Electrical has grown into one of Canada's most respected electrical service companies — built on a foundation of quality workmanship, honest pricing, and an unwavering commitment to safety.
+            </p>
+            <p style={{color:'rgba(255,255,255,0.6)',fontSize:'clamp(14px,1.8vw,16px)',lineHeight:1.8,marginBottom:36}}>
+              Our team of fully licensed, ESA-certified electricians brings expertise, modern equipment, and a customer-first approach to every job — from a single outlet repair to complete commercial electrical systems.
+            </p>
+            <div className="about-checklist" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:36}}>
+              {[['ESA Certified','All electricians hold valid ESA certification'],['Fully Insured','$5M liability coverage on all projects'],['Permit Ready','We handle all permits and inspections'],['Warranty Backed','2-year workmanship guarantee']].map(([title, desc]) => (
+                <div key={title} style={{display:'flex',gap:12,alignItems:'flex-start'}}>
+                  <div style={{width:20,height:20,background:'rgba(37,99,235,0.2)',border:'1px solid #2563EB',borderRadius:4,display:'flex',alignItems:'center',justifyContent:'center',fontSize:11,color:'#60a5fa',flexShrink:0,marginTop:2}}>✓</div>
+                  <div>
+                    <div style={{fontWeight:700,fontSize:14,marginBottom:4}}>{title}</div>
+                    <div style={{fontSize:13,color:'rgba(255,255,255,0.45)'}}>{desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <a href="#contact" className="btn-primary">Work With Us →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <div style={{maxWidth:1280,margin:'0 auto',padding:'64px 24px 32px'}}>
+        <div className="footer-grid" style={{display:'grid',gridTemplateColumns:'2fr 1fr 1fr 1.5fr',gap:48,marginBottom:48}}>
+          {/* Brand */}
+          <div>
+            <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:20}}>
+              <div style={{width:38,height:38,background:'linear-gradient(135deg,#1d4ed8,#3b82f6)',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}}>⚡</div>
+              <div>
+                <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:20}}>VoltEdge</div>
+                <div style={{fontSize:10,color:'rgba(255,255,255,0.4)',letterSpacing:'.12em',textTransform:'uppercase'}}>Electrical Services</div>
+              </div>
+            </div>
+            <p style={{color:'rgba(255,255,255,0.45)',fontSize:14,lineHeight:1.75,marginBottom:24,maxWidth:280}}>
+              Licensed, insured, and ESA-certified electrical services for homes and businesses across Canada.
+            </p>
+            <div style={{display:'flex',gap:12}}>
+              {['Facebook','Instagram','LinkedIn','X'].map(s => (
+                <a key={s} href="#" style={{width:36,height:36,background:'rgba(255,255,255,0.06)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:8,display:'flex',alignItems:'center',justifyContent:'center',color:'rgba(255,255,255,0.5)',fontSize:12,fontWeight:700,textDecoration:'none',transition:'all .3s'}}
+                  onMouseOver={e=>{e.currentTarget.style.background='rgba(37,99,235,0.2)';e.currentTarget.style.color='#fff'}}
+                  onMouseOut={e=>{e.currentTarget.style.background='rgba(255,255,255,0.06)';e.currentTarget.style.color='rgba(255,255,255,0.5)'}}>
+                  {s[0]}
+                </a>
+              ))}
+            </div>
+          </div>
+          {/* Links */}
+          <div>
+            <h4 style={{fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:14,marginBottom:20,color:'rgba(255,255,255,0.9)'}}>Quick Links</h4>
+            {['Home','Services','About','Gallery','Testimonials','Contact'].map(l => (
+              <a key={l} href={`#${l.toLowerCase()}`} style={{display:'block',color:'rgba(255,255,255,0.45)',fontSize:14,textDecoration:'none',marginBottom:10,transition:'color .3s'}}
+                onMouseOver={e=>e.currentTarget.style.color='#60a5fa'} onMouseOut={e=>e.currentTarget.style.color='rgba(255,255,255,0.45)'}>{l}</a>
+            ))}
+          </div>
+          {/* Services */}
+          <div>
+            <h4 style={{fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:14,marginBottom:20,color:'rgba(255,255,255,0.9)'}}>Services</h4>
+            {['Emergency Repairs','Wiring & Rewiring','Panel Upgrades','EV Charger Install','Lighting','Inspections'].map(l => (
+              <a key={l} href="#services" style={{display:'block',color:'rgba(255,255,255,0.45)',fontSize:14,textDecoration:'none',marginBottom:10,transition:'color .3s'}}
+                onMouseOver={e=>e.currentTarget.style.color='#60a5fa'} onMouseOut={e=>e.currentTarget.style.color='rgba(255,255,255,0.45)'}>{l}</a>
+            ))}
+          </div>
+          {/* Contact + Hours */}
+          <div>
+            <h4 style={{fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:14,marginBottom:20,color:'rgba(255,255,255,0.9)'}}>Contact & Hours</h4>
+            {[
+              ['📞','+1 (647) 900-5550','tel:+16479005550'],
+              ['📧','info@voltedge.ca','mailto:info@voltedge.ca'],
+              ['📍','Edmonton, Alberta, Canada','#'],
+            ].map(([icon, text, href]) => (
+              <a key={text} href={href} style={{display:'flex',alignItems:'center',gap:8,color:'rgba(255,255,255,0.45)',fontSize:14,textDecoration:'none',marginBottom:12,transition:'color .3s',wordBreak:'break-word'}}
+                onMouseOver={e=>e.currentTarget.style.color='#60a5fa'} onMouseOut={e=>e.currentTarget.style.color='rgba(255,255,255,0.45)'}>
+                <span style={{flexShrink:0}}>{icon}</span> {text}
+              </a>
+            ))}
+            <div style={{marginTop:20,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:10,padding:16}}>
+              <div style={{fontSize:12,fontWeight:700,color:'rgba(255,255,255,0.7)',marginBottom:8,textTransform:'uppercase',letterSpacing:'.08em'}}>Business Hours</div>
+              {[['Mon – Fri','7:00 AM – 8:00 PM'],['Saturday','8:00 AM – 6:00 PM'],['Emergency','24/7 Available']].map(([day, time]) => (
+                <div key={day} style={{display:'flex',justifyContent:'space-between',fontSize:13,color:'rgba(255,255,255,0.45)',marginBottom:6,gap:8}}>
+                  <span style={{flexShrink:0}}>{day}</span><span style={{color:day==='Emergency'?'#34d399':'rgba(255,255,255,0.45)',textAlign:'right'}}>{time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div style={{borderTop:'1px solid rgba(255,255,255,0.06)',paddingTop:24,display:'flex',justifyContent:'space-between',flexWrap:'wrap',gap:12,fontSize:13,color:'rgba(255,255,255,0.3)'}}>
+          <span>© 2024 VoltEdge Electrical Services Inc. All rights reserved. | Licensed & Insured in Ontario, BC, and Alberta</span>
+          <span>ESA Certified · Master Electrician on Staff</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ── App ───────────────────────────────────────────────────────────────────────
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showBack, setShowBack] = useState(false);
+  const progress = useScrollProgress();
+
+  useEffect(() => {
+    const h = () => setShowBack(window.scrollY > 400);
+    window.addEventListener('scroll', h, { passive: true });
+    return () => window.removeEventListener('scroll', h);
+  }, []);
+
+  return (
+    <>
+      <div className="progress-bar" style={{width:`${progress}%`}}/>
+      <EmergencyBanner/>
+      <Navbar onMenuToggle={() => setMenuOpen(o => !o)} menuOpen={menuOpen}/>
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)}/>
+      <main>
+        <Hero/>
+        <Services/>
+        <WhyUs/>
+        <Stats/>
+        <About/>
+        <Testimonials/>
+        <ServiceAreas/>
+        <Gallery/>
+        <BeforeAfter/>
+        <FAQ/>
+        <Contact/>
+      </main>
+      <Footer/>
+
+      {/* WhatsApp floating button */}
+      <a href="https://wa.me/919878776190?text=Hello%20VoltEdge%20Electrical,%20I%20would%20like%20to%20get%20a%20quote%20for%20electrical%20services." className="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/>
+        </svg>
+      </a>
+
+      {showBack && (
+        <button className="back-top" onClick={() => window.scrollTo({top:0,behavior:'smooth'})} aria-label="Back to top">↑</button>
+      )}
+
+      <a href="tel:+16479005550" className="sticky-call">📞 Call Now — 24/7 Emergency +91 98787-76190</a>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
