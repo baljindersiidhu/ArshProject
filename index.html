@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Hi-Ampere Electrical Ltd. – Licensed & Trusted Electrical Services Canada</title>
+<link rel="icon" type="image/png" href="white1.png" />
+
 <meta name="description" content="Canada's premium licensed electrical services. 24/7 emergency repairs, panel upgrades, EV charger installation, and more across Toronto, Vancouver, Calgary."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
@@ -564,7 +565,17 @@ function Navbar({ onMenuToggle, menuOpen }) {
       <div className="nav-inner">
         {/* Logo */}
         <a href="#" style={{display:'flex',alignItems:'center',gap:10,textDecoration:'none',flexShrink:0}}>
-          <div style={{width:38,height:38,background:'linear-gradient(135deg,#1d4ed8,#3b82f6)',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,boxShadow:'0 4px 12px rgba(37,99,235,0.4)',flexShrink:0}}>⚡</div>
+          <div style={{width:48,height:40,borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,boxShadow:'0 4px 12px rgba(37,99,235,0.4)',flexShrink:0}}>  
+           <img 
+  src="white2.png"
+  alt="Hi-Ampere Logo"
+  style={{
+    height:45,
+    width:'auto',
+    objectFit:'cover'
+    ,borderRadius:10
+  }}
+/> </div>
           <div>
             <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:20,color:'#fff',lineHeight:1}}>Hi-Ampere</div>
             <div style={{fontSize:10,color:'rgba(255,255,255,0.5)',letterSpacing:'.12em',textTransform:'uppercase',fontWeight:500}}> Electrical Ltd.</div>
@@ -638,7 +649,7 @@ function Hero() {
           </h1>
 
           <p style={{fontSize:'clamp(15px,2vw,18px)',color:'rgba(255,255,255,0.65)',lineHeight:1.7,marginBottom:44,maxWidth:560,opacity:inView?1:0,transform:inView?'none':'translateY(20px)',transition:'all .8s ease .35s'}}>
-            From emergency repairs to full electrical installations — HiAmpere delivers safe, code-compliant, and professional electrical work for homes and businesses nationwide.
+            From emergency repairs to full electrical installations — Hi-Ampere delivers safe, code-compliant, and professional electrical work for homes and businesses nationwide.
           </p>
 
           {/* CTAs */}
@@ -1211,10 +1222,10 @@ function About() {
         <div className="about-grid" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:64,alignItems:'center'}}>
           <div style={{position:'relative'}}>
             <div style={{borderRadius:24,overflow:'hidden',aspectRatio:'4/3',border:'1px solid rgba(37,99,235,0.2)',position:'relative'}}>
-              <img src="team.jpg" alt="VoltEdge Team" style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>
+              <img src="white.jpeg" alt="VoltEdge Team" style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>
               <div style={{position:'absolute',inset:0,background:'linear-gradient(to top, rgba(0,0,0,0.45), transparent)'}}/>
               <div style={{position:'absolute',bottom:20,left:20,color:'#fff'}}>
-                <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:'clamp(18px,3vw,24px)'}}>VoltEdge Team</div>
+                <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:'clamp(18px,3vw,24px)'}}></div>
               </div>
             </div>
             <div style={{position:'absolute',bottom:-20,right:-20,background:'linear-gradient(135deg,#1d4ed8,#2563EB)',borderRadius:16,padding:'20px 24px',boxShadow:'0 20px 60px rgba(37,99,235,0.3)'}}>
@@ -1260,7 +1271,16 @@ function Footer() {
           {/* Brand */}
           <div>
             <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:20}}>
-              <div style={{width:38,height:38,background:'linear-gradient(135deg,#1d4ed8,#3b82f6)',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}}>⚡</div>
+              <div style={{width:48,height:38,background:'linear-gradient(135deg,#1d4ed8,#3b82f6)',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}}>   <img 
+  src="white2.png"
+  alt="Hi-Ampere Logo"
+  style={{
+    height:45,
+    width:'auto',
+    objectFit:'cover'
+    ,borderRadius:10
+  }}
+/> </div>
               <div>
                 <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:20}}>Hi-Ampere</div>
                 <div style={{fontSize:10,color:'rgba(255,255,255,0.4)',letterSpacing:'.12em',textTransform:'uppercase'}}>Electrical Ltd.</div>
