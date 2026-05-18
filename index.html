@@ -698,7 +698,8 @@ function Hero() {
           </div>
 
           {/* Trust strip */}
-          <div className="hero-trust-strip" style={{display:'flex',flexWrap:'wrap',gap:20,opacity:inView?1:0,transition:'all .8s ease .65s'}}>
+          <div className="hero-trust-strip" style={{display:'flex',flexWrap:'wrap',gap:20,opacity:inView?1:0,transition:'all .8s ease .65s', justifyContent:'center',
+  textAlign:'center',}}>
             {[['✅','Licensed Electricians'],['🛡️','Fully Insured'],['⚡','60-Min Response'],['🕐','24/7 Support']].map(([icon, label]) => (
               <div key={label} style={{display:'flex',alignItems:'center',gap:8,color:'rgba(255,255,255,0.6)',fontSize:14,fontWeight:500}}>
                 <span>{icon}</span> {label}
@@ -741,7 +742,7 @@ function Hero() {
   border:'px solid rgba(37,99,235,0.3)',
 
   /* ── Background image ── */
-  backgroundImage:'url("herosection.jpg")',
+backgroundImage:'url("herosection2.jpg")',
   backgroundSize:'cover',
   backgroundPosition:'center',
   backgroundRepeat:'no-repeat',
@@ -751,7 +752,7 @@ function Hero() {
   <div style={{
     position:'absolute',
     inset:0,
-    background:'linear-gradient(135deg, rgba(15,32,68,0.75), rgba(13,31,60,0.85))',
+   background:'linear-gradient(135deg, rgba(15,32,68,0.15), rgba(13,31,60,0.2))',
     zIndex:0,
   }}/>
 
