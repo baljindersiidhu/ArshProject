@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>VoltEdge Electrical – Licensed & Trusted Electrical Services Canada</title>
+<title>Hi-Ampere Electrical Ltd. – Licensed & Trusted Electrical Services Canada</title>
 <meta name="description" content="Canada's premium licensed electrical services. 24/7 emergency repairs, panel upgrades, EV charger installation, and more across Toronto, Vancouver, Calgary."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
@@ -404,7 +404,6 @@ const SERVICES = [
   { icon: "💡", title: "Lighting Installation", desc: "Ambient, task, and accent lighting design + installation. LED upgrades and smart lighting systems." },
   { icon: "🏢", title: "Commercial Electrical", desc: "Full-service commercial electrical for offices, retail, warehouses, and industrial facilities across Canada." },
   { icon: "🏠", title: "Residential Electrical", desc: "All home electrical services — outlets, switches, circuits, ceiling fans, and full renovations." },
-  { icon: "🔋", title: "Generator Installation", desc: "Standby and portable generator hookups. Stay powered during outages with professional installation." },
   { icon: "🛡️", title: "Safety Inspections", desc: "Thorough electrical safety audits and ESA-compliant inspections for peace of mind." },
 ];
 
@@ -418,75 +417,54 @@ const WHY_US = [
 ];
 
 const TESTIMONIALS = [
-  { name: "Arshdeep Singh", city: "Edmonton, AB", rating: 5, text: "VoltEdge completely rewired our 1960s home in under a week. Incredibly professional team — clean, punctual, and their work passed inspection first try. Worth every penny.", initials: "SM", color: "#2563EB" },
-  { name: "Jagmohan ", city: "Calgary, AB", rating: 5, text: "Had an electrical emergency at 11pm and they arrived within 45 minutes. Fixed the issue quickly and even identified a separate hazard we didn't know about. Lifesavers!", initials: "DC", color: "#059669" },
-  { name: "Jennifer Kowalski", city: "Calgary, AB", rating: 5, text: "Installed 3 EV chargers at our commercial property. Perfect work, clean installation, and they handled all the permits. Our go-to for all electrical going forward.", initials: "JK", color: "#7c3aed" },
+  { name: "Sukh Matharu", city: "Edmonton, AB", rating: 5, text: "Hi Ampere completely rewired our 1960s home in under a week. Incredibly professional team — clean, punctual, and their work passed inspection first try. Worth every penny.", initials: "SM", color: "#2563EB" },
+  { name: "Den Columbus ", city: "Edmonton, AB", rating: 5, text: "Had an electrical emergency at 11pm and they arrived within 45 minutes. Fixed the issue quickly and even identified a separate hazard we didn't know about. Lifesavers!", initials: "DC", color: "#059669" },
+  { name: "Jennifer Kowalski", city: "Jasper, AB", rating: 5, text: "Installed 3 EV chargers at our commercial property. Perfect work, clean installation, and they handled all the permits. Our go-to for all electrical going forward in the future.", initials: "JK", color: "#7c3aed" },
   { name: "Marcus Thompson", city: "Edmonton, AB", rating: 5, text: "Panel upgrade was seamless. They explained everything clearly, completed ahead of schedule, and cleaned up perfectly. Already recommended them to 4 neighbours.", initials: "MT", color: "#dc2626" },
-  { name: "Priya Sharma", city: "Mississauga, ON", rating: 5, text: "Smart lighting system installation throughout our new home. These guys are true professionals — the attention to detail is exceptional and prices are very fair.", initials: "PS", color: "#d97706" },
-  { name: "Robert Landry", city: "Ottawa, ON", rating: 5, text: "Third time using VoltEdge and they never disappoint. Generator installation was perfect — properly sized, fully permitted, and working flawlessly after 6 months.", initials: "RL", color: "#0891b2" },
 ];
 
 const FAQS = [
   { q: "Are your electricians licensed and insured in Canada?", a: "Yes, all our electricians hold valid provincial licenses and are covered by comprehensive liability insurance and WSIB. We carry all required certifications for work in every province we operate in." },
   { q: "Do you offer 24/7 emergency electrical services?", a: "Absolutely. Our emergency response team is available around the clock, 365 days a year. We guarantee arrival within 60 minutes for emergency calls in our primary service areas." },
-  { q: "How much does an electrical panel upgrade cost?", a: "Panel upgrade costs vary based on amperage (100A, 200A, 400A), location, and permit requirements. Most residential upgrades range from $1,800–$4,500. We provide free on-site estimates." },
   { q: "Do you pull permits for electrical work?", a: "Yes, we handle all required electrical permits through the Electrical Safety Authority (ESA) and local municipalities. All work is inspected and certified to Canadian Electrical Code standards." },
-  { q: "What areas in Canada do you serve?", a: "We primarily serve the Greater Toronto Area, Vancouver, Calgary, Edmonton, and Mississauga, with service available throughout Ontario, BC, and Alberta. Contact us for service in other regions." },
-  { q: "Can you install EV charging stations for my business?", a: "Yes! We specialize in commercial EV charging infrastructure — from single-unit installs to multi-port charging arrays. We handle design, permits, installation, and activation." },
+ 
 ];
 
 const CITIES = [
-  { name: "Toronto", province: "ON", icon: "🏙️" },
-  { name: "Vancouver", province: "BC", icon: "🌊" },
-  { name: "Calgary", province: "AB", icon: "🏔️" },
-  { name: "Edmonton", province: "AB", icon: "❄️" },
-  { name: "Mississauga", province: "ON", icon: "🏘️" },
-  { name: "Ottawa", province: "ON", icon: "🍁" },
-  { name: "Hamilton", province: "ON", icon: "⚙️" },
-  { name: "Brampton", province: "ON", icon: "🌿" },
 ];
 
 const GALLERY_ITEMS = [
 
   {
-    label: "Panel Upgrade – Toronto Home",
+    label: "Panel Upgrade – Home",
     category: "Residential",
     bg: "linear-gradient(135deg,#0f2044,#1e3a5f)",
     image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4"
   },
 
   {
-    label: "Commercial Wiring – Calgary Office",
+    label: "Commercial Wiring  ",
     category: "Commercial",
     bg: "linear-gradient(135deg,#1a1035,#2d1b5e)",
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd"
   },
 
-  {
-  label: "EV Charger – Vancouver",
-  category: "EV Installation",
-  image:"https://images.pexels.com/photos/9800009/pexels-photo-9800009.jpeg?auto=compress&cs=tinysrgb&w=1200"
-},
+ 
 
   {
-    label: "Smart Lighting – Edmonton Condo",
+    label: "Smart Lighting – Edmonton Canada",
     category: "Lighting",
     bg: "linear-gradient(135deg,#1c1205,#4a3200)",
     image: "https://images.unsplash.com/photo-1513694203232-719a280e022f"
   },
 
  {
-  label: "Generator – Ottawa Estate",
-  category: "Generator",
+  label: "Emergency Failure – Edmonton",
+  category: "Emergency",
   image:"https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1200"
 },
 
-  {
-    label: "Rewiring – Mississauga Duplex",
-    category: "Residential",
-    bg: "linear-gradient(135deg,#1f0d0d,#5e1a1a)",
-    image: "https://images.unsplash.com/photo-1558002038-1055907df827"
-  },
+  
 ];
 
 // ── Hooks ─────────────────────────────────────────────────────────────────────
@@ -556,8 +534,8 @@ function EmergencyBanner() {
       <div className="banner-desktop" style={{fontSize:13,fontWeight:600,letterSpacing:'.04em'}}>
         <span>⚡</span>
         <span style={{margin:'0 6px'}}>24/7 Emergency Electrical Services Across Canada — Call Now:</span>
-        <a href="https://wa.me/919878776190?text=Hello%20VoltEdge%20Electrical,%20I%20would%20like%20to%20get%20a%20quote%20for%20electrical%20services." style={{color:'#bfdbfe',fontWeight:700,textDecoration:'none',whiteSpace:'nowrap'}}>
-          +91-98787-76190
+        <a href="https://wa.me/15875660218?text=Hello%20Hi-Ampere%20Electrical%20Ltd.,%20I%20am%20interested%20in%20your%20electrical%20services%20and%20would%20like%20to%20get%20a%20quote." style={{color:'#bfdbfe',fontWeight:700,textDecoration:'none',whiteSpace:'nowrap'}}>
+          +1 (587) 566-0218
         </a>
         <span style={{marginLeft:6}}>⚡</span>
       </div>
@@ -565,8 +543,8 @@ function EmergencyBanner() {
       {/* Mobile: two clean lines */}
       <div className="banner-mobile" style={{fontSize:11,fontWeight:600,lineHeight:1.2,padding:1}}>
         <div>⚡ 24/7 Emergency Services — Canada-Wide</div>
-        <a href="https://wa.me/919878776190?text=Hello%20VoltEdge%20Electrical,%20I%20would%20like%20to%20get%20a%20quote%20for%20electrical%20services." style={{color:'#bfdbfe',fontWeight:700,textDecoration:'none',fontSize:13}}>
-          📞 +91-98787-76190
+        <a href="https://wa.me/15875660218?text=Hello%20Hi-Ampere%20Electrical%20Ltd.,%20I%20am%20interested%20in%20your%20electrical%20services%20and%20would%20like%20to%20get%20a%20quote." style={{color:'#bfdbfe',fontWeight:700,textDecoration:'none',fontSize:13}}>
+          📞 +1 (587) 566-0218
         </a>
       </div>
     </div>
@@ -588,8 +566,8 @@ function Navbar({ onMenuToggle, menuOpen }) {
         <a href="#" style={{display:'flex',alignItems:'center',gap:10,textDecoration:'none',flexShrink:0}}>
           <div style={{width:38,height:38,background:'linear-gradient(135deg,#1d4ed8,#3b82f6)',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,boxShadow:'0 4px 12px rgba(37,99,235,0.4)',flexShrink:0}}>⚡</div>
           <div>
-            <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:20,color:'#fff',lineHeight:1}}>VoltEdge</div>
-            <div style={{fontSize:10,color:'rgba(255,255,255,0.5)',letterSpacing:'.12em',textTransform:'uppercase',fontWeight:500}}>Electrical Services</div>
+            <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:20,color:'#fff',lineHeight:1}}>Hi-Ampere</div>
+            <div style={{fontSize:10,color:'rgba(255,255,255,0.5)',letterSpacing:'.12em',textTransform:'uppercase',fontWeight:500}}> Electrical Ltd.</div>
           </div>
         </a>
 
@@ -602,7 +580,7 @@ function Navbar({ onMenuToggle, menuOpen }) {
 
         {/* CTA */}
         <div style={{display:'flex',alignItems:'center',gap:10}}>
-          <a href="https://wa.me/919878776190?text=Hello%20VoltEdge%20Electrical,%20I%20would%20like%20to%20get%20a%20quote%20for%20electrical%20services." className="btn-outline nav-call-btn" style={{padding:'10px 18px',fontSize:14,gap:6}}>
+          <a href="https://wa.me/15875660218?text=Hello%20Hi-Ampere%20Electrical%20Ltd.,%20I%20am%20interested%20in%20your%20electrical%20services%20and%20would%20like%20to%20get%20a%20quote." className="btn-outline nav-call-btn" style={{padding:'10px 18px',fontSize:14,gap:6}}>
             📞 <span className="nav-call-label">Call Now</span>
           </a>
           <a href="#contact" className="btn-primary nav-quote-btn" style={{padding:'10px 20px',fontSize:14}}>Free Quote</a>
@@ -660,12 +638,12 @@ function Hero() {
           </h1>
 
           <p style={{fontSize:'clamp(15px,2vw,18px)',color:'rgba(255,255,255,0.65)',lineHeight:1.7,marginBottom:44,maxWidth:560,opacity:inView?1:0,transform:inView?'none':'translateY(20px)',transition:'all .8s ease .35s'}}>
-            From emergency repairs to full electrical installations — VoltEdge delivers safe, code-compliant, and professional electrical work for homes and businesses nationwide.
+            From emergency repairs to full electrical installations — HiAmpere delivers safe, code-compliant, and professional electrical work for homes and businesses nationwide.
           </p>
 
           {/* CTAs */}
           <div className="hero-ctas" style={{display:'flex',flexWrap:'wrap',gap:16,marginBottom:64,opacity:inView?1:0,transition:'all .8s ease .5s'}}>
-            <a href="tel:+16479005550" className="btn-primary" style={{fontSize:16,padding:'16px 32px'}}>📞 Call Now</a>
+            <a href="tel:+15875660218" className="btn-primary" style={{fontSize:16,padding:'16px 32px'}}>📞 Call Now</a>
             <a href="#contact" className="btn-outline" style={{fontSize:16,padding:'16px 32px'}}>Get Free Estimate →</a>
             <a href="#contact" style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:8,color:'rgba(255,255,255,0.6)',fontSize:15,fontWeight:500,textDecoration:'none',padding:'16px 8px',transition:'color .3s'}} onMouseOver={e=>e.currentTarget.style.color='#fff'} onMouseOut={e=>e.currentTarget.style.color='rgba(255,255,255,0.6)'}>
               📅 Book Appointment
@@ -761,7 +739,7 @@ function Hero() {
       </div>
     </div>
     <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
-      {[['5,000+','Projects Done'],['98%','Satisfaction'],['10+','Years Exp.'],['24/7','Available']].map(([n, l]) => (
+      {[['800+','Projects Done'],['98%','Satisfaction'],['5+','Years Exp.'],['24/7','Available']].map(([n, l]) => (
         <div key={l} style={{background:'rgba(37,99,235,0.1)',borderRadius:10,padding:'10px 14px'}}>
           <div style={{fontFamily:'Syne,sans-serif',fontWeight:400,fontSize:17,color:'#60a5fa'}}>{n}</div>
           <div style={{fontSize:11,color:'rgba(255,255,255,0.5)',marginTop:2}}>{l}</div>
@@ -818,7 +796,7 @@ function WhyUs() {
       <div className="container">
         <div className="why-us-grid" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:80,alignItems:'center'}}>
           <div style={{opacity:inView?1:0,transform:inView?'none':'translateX(-30px)',transition:'all .8s ease'}}>
-            <div className="section-tag">Why VoltEdge</div>
+            <div className="section-tag">Why Hi-Ampere</div>
             <h2 className="font-display" style={{fontSize:'clamp(26px,3.5vw,48px)',fontWeight:800,marginBottom:20}}>
               The <span className="gradient-text">Smarter Choice</span> for Electrical Work
             </h2>
@@ -1154,9 +1132,9 @@ emailjs.init("hshH8F1-vQW_9wHrZ");
               Tell us about your project and we'll get back to you within 30 minutes during business hours. Emergency? Call us directly — 24/7.
             </p>
             {[
-              { icon:'📞', label:'Phone', value:'+1 (647) 900-5550', href:'tel:+16479005550' },
-              { icon:'📧', label:'Email', value:'info@voltedge.ca', href:'mailto:info@voltedge.ca' },
-              { icon:'📍', label:'Headquarters', value:'Edmonton, Alberta, Canada', href:'#' },
+              { icon:'📞', label:'Phone', value:'+1 (587) 566-0218', href:'tel:+15875660218' },
+              { icon:'📧', label:'Email', value:'hiampere29@gmail.com', href:'mailto:hiampere29@gmail.com' },
+              { icon:'📍', label:'Location', value:'313 Wild Rose Way NW, Edmonton,AB T6T 1M7, Canada', href:'#' },
               { icon:'🕐', label:'Business Hours', value:'Mon-Sat: 7AM–8PM | Emergency: 24/7', href:'#' },
             ].map((item, i) => (
               <div key={i} style={{display:'flex',alignItems:'flex-start',gap:16,marginBottom:24}}>
@@ -1245,18 +1223,18 @@ function About() {
             </div>
           </div>
           <div style={{opacity:inView?1:0,transform:inView?'none':'translateX(30px)',transition:'all .8s ease'}}>
-            <div className="section-tag">About VoltEdge</div>
+            <div className="section-tag">About Hi-Ampere</div>
             <h2 className="font-display" style={{fontSize:'clamp(24px,3.5vw,44px)',fontWeight:800,marginBottom:20}}>
               Canada's <span className="gradient-text">Most Trusted</span> Electrical Team
             </h2>
             <p style={{color:'rgba(255,255,255,0.6)',fontSize:'clamp(14px,1.8vw,16px)',lineHeight:1.8,marginBottom:20}}>
-              Founded in Edmonton in 2014, VoltEdge Electrical has grown into one of Canada's most respected electrical service companies — built on a foundation of quality workmanship, honest pricing, and an unwavering commitment to safety.
+              Founded in Edmonton in 2021, Hi-Ampere Electrical has grown into one of Canada's most respected electrical service companies — built on a foundation of quality workmanship, honest pricing, and an unwavering commitment to safety.
             </p>
             <p style={{color:'rgba(255,255,255,0.6)',fontSize:'clamp(14px,1.8vw,16px)',lineHeight:1.8,marginBottom:36}}>
               Our team of fully licensed, ESA-certified electricians brings expertise, modern equipment, and a customer-first approach to every job — from a single outlet repair to complete commercial electrical systems.
             </p>
             <div className="about-checklist" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:36}}>
-              {[['ESA Certified','All electricians hold valid ESA certification'],['Fully Insured','$5M liability coverage on all projects'],['Permit Ready','We handle all permits and inspections'],['Warranty Backed','2-year workmanship guarantee']].map(([title, desc]) => (
+              {[['ESA Certified','All electricians hold valid ESA certification'],['Permit Ready','We handle all permits and inspections']].map(([title, desc]) => (
                 <div key={title} style={{display:'flex',gap:12,alignItems:'flex-start'}}>
                   <div style={{width:20,height:20,background:'rgba(37,99,235,0.2)',border:'1px solid #2563EB',borderRadius:4,display:'flex',alignItems:'center',justifyContent:'center',fontSize:11,color:'#60a5fa',flexShrink:0,marginTop:2}}>✓</div>
                   <div>
@@ -1284,8 +1262,8 @@ function Footer() {
             <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:20}}>
               <div style={{width:38,height:38,background:'linear-gradient(135deg,#1d4ed8,#3b82f6)',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}}>⚡</div>
               <div>
-                <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:20}}>VoltEdge</div>
-                <div style={{fontSize:10,color:'rgba(255,255,255,0.4)',letterSpacing:'.12em',textTransform:'uppercase'}}>Electrical Services</div>
+                <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:20}}>Hi-Ampere</div>
+                <div style={{fontSize:10,color:'rgba(255,255,255,0.4)',letterSpacing:'.12em',textTransform:'uppercase'}}>Electrical Ltd.</div>
               </div>
             </div>
             <p style={{color:'rgba(255,255,255,0.45)',fontSize:14,lineHeight:1.75,marginBottom:24,maxWidth:280}}>
@@ -1321,9 +1299,9 @@ function Footer() {
           <div>
             <h4 style={{fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:14,marginBottom:20,color:'rgba(255,255,255,0.9)'}}>Contact & Hours</h4>
             {[
-              ['📞','+1 (647) 900-5550','tel:+16479005550'],
-              ['📧','info@voltedge.ca','mailto:info@voltedge.ca'],
-              ['📍','Edmonton, Alberta, Canada','#'],
+              ['📞','+1 (587) 566-0218','tel:+5875660218'],
+              ['📧','hiampere29@gmail.com','mailto:hiampere29@gmail.com'],
+              ['📍','313 Wild Rose Way NW, Edmonton,AB T6T 1M7, Canada','#'],
             ].map(([icon, text, href]) => (
               <a key={text} href={href} style={{display:'flex',alignItems:'center',gap:8,color:'rgba(255,255,255,0.45)',fontSize:14,textDecoration:'none',marginBottom:12,transition:'color .3s',wordBreak:'break-word'}}
                 onMouseOver={e=>e.currentTarget.style.color='#60a5fa'} onMouseOut={e=>e.currentTarget.style.color='rgba(255,255,255,0.45)'}>
@@ -1342,7 +1320,7 @@ function Footer() {
         </div>
 
         <div style={{borderTop:'1px solid rgba(255,255,255,0.06)',paddingTop:24,display:'flex',justifyContent:'space-between',flexWrap:'wrap',gap:12,fontSize:13,color:'rgba(255,255,255,0.3)'}}>
-          <span>© 2024 VoltEdge Electrical Services Inc. All rights reserved. | Licensed & Insured in Ontario, BC, and Alberta</span>
+          <span>© 2026 Hi-Ampere Electrical Ltd. All rights reserved. | Licensed & Insured Electrical Contractor</span>
           <span>ESA Certified · Master Electrician on Staff</span>
         </div>
       </div>
@@ -1384,7 +1362,7 @@ function App() {
       <Footer/>
 
       {/* WhatsApp floating button */}
-      <a href="https://wa.me/919878776190?text=Hello%20VoltEdge%20Electrical,%20I%20would%20like%20to%20get%20a%20quote%20for%20electrical%20services." className="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <a href="https://wa.me/15875660218?text=Hello%20Hi-Ampere%20Electrical%20Ltd.,%20I%20would%20like%20to%20get%20a%20quote%20for%20electrical%20services." className="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/>
         </svg>
@@ -1394,7 +1372,7 @@ function App() {
         <button className="back-top" onClick={() => window.scrollTo({top:0,behavior:'smooth'})} aria-label="Back to top">↑</button>
       )}
 
-      <a href="tel:+16479005550" className="sticky-call">📞 Call Now — 24/7 Emergency +91 98787-76190</a>
+      <a href="tel:+15875660218" className="sticky-call">📞 Call Now — 24/7 Emergency +1 (587) 566-0218 </a>
     </>
   );
 }
